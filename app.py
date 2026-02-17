@@ -254,18 +254,18 @@ def render_customer_summary() -> None:
     cust = selected_customer_record()
 
     c1, c2, c3, c4, c5 = st.columns(5)
-    c1.text_input("Customer Name", value=cust["Customer Name"], disabled=True)
-    c2.text_input("Customer ID", value=cust["Customer ID"], disabled=True)
-    c3.text_input("Risk Rating", value=cust["Risk Rating"], disabled=True)
-    c4.text_input("Occupation", value=cust["Occupation"], disabled=True)
-    c5.text_input("Nationality", value=cust["Nationality"], disabled=True)
+    c1.text_input("Customer Name", value=cust["Customer Name"], disabled=False)
+    c2.text_input("Customer ID", value=cust["Customer ID"], disabled=False)
+    c3.text_input("Risk Rating", value=cust["Risk Rating"], disabled=False)
+    c4.text_input("Occupation", value=cust["Occupation"], disabled=False)
+    c5.text_input("Nationality", value=cust["Nationality"], disabled=False)
 
     with st.expander("View Full KYC Details"):
         kyc_cols = st.columns(4)
-        kyc_cols[0].text_input("Date of Birth", value=cust["Date of Birth"], disabled=True)
-        kyc_cols[1].text_input("PEP", value=cust["PEP"], disabled=True)
-        kyc_cols[2].text_input("Sanctions Screening", value=cust["Sanctions Screening"], disabled=True)
-        kyc_cols[3].text_input("Monitoring Plan", value=cust["Monitoring Plan"], disabled=True)
+        kyc_cols[0].text_input("Date of Birth", value=cust["Date of Birth"], disabled=False)
+        kyc_cols[1].text_input("PEP", value=cust["PEP"], disabled=False)
+        kyc_cols[2].text_input("Sanctions Screening", value=cust["Sanctions Screening"], disabled=False)
+        kyc_cols[3].text_input("Monitoring Plan", value=cust["Monitoring Plan"], disabled=False)
 
 
 def render_transaction_selection() -> None:
@@ -499,9 +499,9 @@ def render_debug_panel() -> None:
 init_state()
 
 with st.sidebar:
-    st.markdown("### 🏦 Bank Logo")
+    st.markdown("# 🏦 BARCLAYS INDIA")
     st.markdown("#### SAR Narrative Generator")
-    st.caption("Enterprise AML & Compliance Workspace")
+    st.caption("A Prototype Workspace to Detect Activity that may Indicate Money Laundering, Fraud, or other Financial Crime")
     st.divider()
 
     st.session_state.role = st.selectbox("Role", ["Analyst", "Reviewer"], index=0 if st.session_state.role == "Analyst" else 1)
@@ -511,7 +511,6 @@ with st.sidebar:
         [
             "Dashboard",
             "Transaction Alerts",
-            "Customer Information",
             "KYC Data",
             "Account & Transaction Data",
             "Case Management",
@@ -559,9 +558,6 @@ if page == "Dashboard":
 
 elif page == "Transaction Alerts":
     render_case_selection()
-
-elif page == "Customer Information":
-    render_customer_summary()
 
 elif page == "KYC Data":
     render_customer_summary()
